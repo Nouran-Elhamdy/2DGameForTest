@@ -5,7 +5,7 @@ public class RockItem : MonoBehaviour
     #region Unity Calls
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<BallItem>())
+        if (collision.gameObject.GetComponent<BallItem>())
         {
             if (collision.gameObject.GetComponent<BallItem>().currentBallConfig.ballType == BallType.FireBall)
             {
@@ -20,7 +20,7 @@ public class RockItem : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = Manager.BowManager.bowConfig.energyBallConfig.sprite;
             }
         }
-     
+
     }
     #endregion
 }
