@@ -24,7 +24,7 @@ namespace Test.Manager
         #region Public Methods
         public void SetBallConfiguration()
         {
-           var item = PoolManager.InitItem();
+           var item = BallPoolManager.InitItem();
             switch (BowManager.CurrentBallType)
             {
                 case BallType.FireBall:
@@ -48,7 +48,7 @@ namespace Test.Manager
                 default:
                     break;
             }
-            PoolManager.DeActivateItem(item);
+            BallPoolManager.DeActivateItem(item);
         }
         #endregion
     }

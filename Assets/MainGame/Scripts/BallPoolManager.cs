@@ -26,10 +26,10 @@ namespace Test.Manager
         {
             var item = m_ObjectPool.GetPooledObject(typeof(BallItem));
             if(!spriteRenderer.flipX)
-            item.gameObject.GetComponent<Transform>().position = ballItemParentL.position;
+            item.gameObject.GetComponent<Transform>().position = ballItemParentR.position;
             else
             {
-                item.gameObject.GetComponent<Transform>().position = ballItemParentR.position;
+                item.gameObject.GetComponent<Transform>().position = ballItemParentL.position;
             }
             item.gameObject.SetActive(true);
             return item;

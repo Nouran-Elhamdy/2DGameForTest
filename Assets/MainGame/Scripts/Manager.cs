@@ -32,7 +32,7 @@ namespace Test.Manager
         }
 
         private static BallPoolManager m_BallPoolManager;
-        public static BallPoolManager PoolManager
+        public static BallPoolManager BallPoolManager
         {
             get
             {
