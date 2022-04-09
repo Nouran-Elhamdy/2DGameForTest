@@ -41,6 +41,7 @@ namespace Test.Manager
                     item.GetBallConfigData(bowConfig.energyBallConfig);
                     item.name = bowConfig.energyBallConfig.ballType.ToString();
                     item.GetComponent<SpriteRenderer>().sprite = bowConfig.energyBallConfig.sprite;
+                    item.GetComponent<Rigidbody2D>().sharedMaterial = bowConfig.energyBallConfig.physicsMaterial2;
                     break;
                 default:
                     break;
@@ -70,6 +71,7 @@ public class BallConfig
 {
     public BallType ballType;
     public Sprite sprite;
+    public PhysicsMaterial2D physicsMaterial2;
     public float damage;
     public float lifeTime;
 }

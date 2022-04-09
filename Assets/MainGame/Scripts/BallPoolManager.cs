@@ -6,8 +6,9 @@ namespace Test.Manager
     public class BallPoolManager : Manager
     {
         #region Public Variables
-        public Transform ballItemParent;
-
+        public Transform ballItemParentL;
+        public Transform ballItemParentR;
+        public SpriteRenderer spriteRenderer;
         public ObjectPool m_ObjectPool;
         #endregion
 
@@ -15,7 +16,7 @@ namespace Test.Manager
         public override void Awake()
         {
             base.Awake();
-            m_ObjectPool.spawnManagerTransform = ballItemParent;
+            m_ObjectPool.spawnManagerTransform = ballItemParentL;
             m_ObjectPool.StartPool();
         }
         #endregion
@@ -24,9 +25,13 @@ namespace Test.Manager
         public BallItem InitItem()
         {
             var item = m_ObjectPool.GetPooledObject(typeof(BallItem));
-            item.gameObject.GetComponent<Transform>().position = ballItemParent.position;
+            if(!spriteRenderer.flipX)
+            item.gameObject.GetComponent<Transform>().position = ballItemParentL.position;
+            else
+            {
+                item.gameObject.GetComponent<Transform>().position = ballItemParentR.position;
+            }
             item.gameObject.SetActive(true);
-
             return item;
         }
 
