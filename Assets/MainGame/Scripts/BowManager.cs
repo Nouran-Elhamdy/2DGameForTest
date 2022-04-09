@@ -31,11 +31,13 @@ namespace Test.Manager
                     item.GetBallConfigData(bowConfig.fireBallConfig);
                     item.name = bowConfig.fireBallConfig.ballType.ToString();
                     item.GetComponent<SpriteRenderer>().sprite = bowConfig.fireBallConfig.sprite;
+                    item.GetComponent<Rigidbody2D>().sharedMaterial = bowConfig.fireBallConfig.physicsMaterial2;
                     break;
                 case BallType.IceBall:
                     item.GetBallConfigData(bowConfig.iceBallConfig);
                     item.name = bowConfig.iceBallConfig.ballType.ToString();
                     item.GetComponent<SpriteRenderer>().sprite = bowConfig.iceBallConfig.sprite;
+                    item.GetComponent<Rigidbody2D>().sharedMaterial = bowConfig.iceBallConfig.physicsMaterial2;
                     break;
                 case BallType.EnergyBall:
                     item.GetBallConfigData(bowConfig.energyBallConfig);
