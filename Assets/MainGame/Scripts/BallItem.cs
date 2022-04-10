@@ -24,7 +24,7 @@ public class BallItem : MonoBehaviour
     #endregion
 
     #region Unity Calls
-    private void OnEnable()
+    private void Start()
     {
         spriteRenderer = FindObjectOfType<PlayerController>().GetComponent<SpriteRenderer>();
         transform.localScale = new Vector3(0.5f, 0.5f, 0);
@@ -43,6 +43,7 @@ public class BallItem : MonoBehaviour
             rocketPosition = transform.localPosition;
         }
     }
+
     void Update()
     {
         if (currentBallConfig.ballType != BallType.EnergyBall)
