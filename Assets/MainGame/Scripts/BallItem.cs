@@ -11,7 +11,7 @@ public class BallItem : MonoBehaviour
     #region Private Variables
     Vector3 rocketPosition;
     SpriteRenderer spriteRenderer;
-
+    bool isRight;
     float newX;
     float newY;
     #endregion
@@ -24,15 +24,15 @@ public class BallItem : MonoBehaviour
     #endregion
 
     #region Unity Calls
-    private void Start()
+    private void OnEnable()
     {
         spriteRenderer = FindObjectOfType<PlayerController>().GetComponent<SpriteRenderer>();
         transform.localScale = new Vector3(0.5f, 0.5f, 0);
-
+        isRight = !spriteRenderer.flipX;
 
         if (currentBallConfig.ballType == BallType.EnergyBall)
         {
-            if (!spriteRenderer.flipX)
+            if (isRight)
                 GetComponent<Rigidbody2D>().velocity = transform.right * 10;
 
             else
@@ -40,23 +40,14 @@ public class BallItem : MonoBehaviour
         }
         else
         {
-            if (!spriteRenderer.flipX)
-            {
-                transform.localPosition = new Vector3();
-                rocketPosition = new Vector3();
-            }
-            else
-            {
-                transform.localPosition = new Vector3();
-                rocketPosition = new Vector3();
-            }
+            rocketPosition = transform.localPosition;
         }
     }
     void Update()
     {
         if (currentBallConfig.ballType != BallType.EnergyBall)
         {
-            if (!spriteRenderer.flipX)
+            if (isRight)
             {
                 newX = rocketPosition.x + speed;
                 newY = GetY(newX, true);
@@ -66,8 +57,8 @@ public class BallItem : MonoBehaviour
                 newX = rocketPosition.x - speed;
                 newY = GetY(newX, false);
             }
-            rocketPosition = new Vector3(newX, newY, 0);
             transform.localPosition = rocketPosition;
+            rocketPosition = new Vector3(newX, newY, 0);
         }
     }
     #endregion
@@ -75,8 +66,6 @@ public class BallItem : MonoBehaviour
     #region Private Methods
     float GetY(float x, bool isFlipped)
     {
-        //if (isFlipped)
-        //    return (-0.08f * Mathf.Pow(x, 2)) + 0.8f * x;
         if (isFlipped)
             return (-0.08f * Mathf.Pow(x, 2)) + (1.76f * x) - 7.68f;
         else
