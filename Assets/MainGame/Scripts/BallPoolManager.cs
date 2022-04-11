@@ -18,7 +18,6 @@ namespace Test.Manager
         public override void Awake()
         {
             base.Awake();
-        
         }
         #endregion
 
@@ -30,16 +29,7 @@ namespace Test.Manager
             else
                 temp = ballItemParentL.position;
             var item = Instantiate(ballItemPrefab, temp, Quaternion.identity);
-           // item.gameObject.SetActive(false);
-          
-           // item.gameObject.GetComponent<Transform>().position = ballItemParentR.position;
-           // Debug.Log(item.gameObject.GetComponent<Transform>().position);
-
-            //else
-            //{
-            //    item.gameObject.GetComponent<Transform>().position = ballItemParentL.position;
-            //}
-         //   item.gameObject.SetActive(true);
+            
             return item;
         }
 
@@ -49,7 +39,6 @@ namespace Test.Manager
             IEnumerator DeactivateBall(BallItem ballItem)
             {
                 yield return new WaitForSeconds(ballItem.currentBallConfig.lifeTime);
-                //   ballItem.gameObject.SetActive(false);
                 Destroy(ballItem.gameObject, ballItem.currentBallConfig.lifeTime);
             }
         }

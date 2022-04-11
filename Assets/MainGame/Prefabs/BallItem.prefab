@@ -108,6 +108,7 @@ MonoBehaviour:
     physicsMaterial2: {fileID: 0}
     damage: 0
     lifeTime: 0
+  speed: 0.01
   maxDuration: 1
 --- !u!50 &-6469683103377098621
 Rigidbody2D:
