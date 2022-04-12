@@ -7,11 +7,13 @@ namespace Test.Manager
     {
         #region Public Variables
         public Transform ballItemParentL;
-        public BallItem ballItemPrefab;
         public Transform ballItemParentR;
+        public BallItem ballItemPrefab;
         public SpriteRenderer spriteRenderer;
-        public ObjectPool m_ObjectPool;
-        public Vector3 temp;
+        #endregion
+
+        #region PrivateVariables
+        Vector3 temp;
         #endregion
 
         #region Unity Calls
