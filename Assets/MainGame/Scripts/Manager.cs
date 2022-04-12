@@ -31,13 +31,13 @@ namespace Test.Manager
             }
         }
 
-        private static BallPoolManager m_BallPoolManager;
-        public static BallPoolManager BallPoolManager
+        private static PoolManager m_BallPoolManager;
+        public static PoolManager BallPoolManager
         {
             get
             {
                 if (!m_BallPoolManager)
-                    m_BallPoolManager = GetManager<BallPoolManager>();
+                    m_BallPoolManager = GetManager<PoolManager>();
                 return m_BallPoolManager;
             }
         }

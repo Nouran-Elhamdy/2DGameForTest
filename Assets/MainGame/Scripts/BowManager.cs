@@ -8,6 +8,9 @@ namespace Test.Manager
         public BowConfig bowConfig;
         #endregion
 
+        #region Private Variables
+        #endregion
+
         #region Props
         private BallType m_CurrentBallType;
         public BallType CurrentBallType
@@ -19,12 +22,18 @@ namespace Test.Manager
                 SetBallConfiguration();
             }
         }
+        private float m_PointA;
+        public float PointA { get => m_PointA; }
+
+        private float m_PointB;
+        public float PointB { get => m_PointB; }
         #endregion
+
 
         #region Public Methods
         public void SetBallConfiguration()
         {
-           var item = BallPoolManager.InitItem();
+            var item = BallPoolManager.InitItem();
             switch (BowManager.CurrentBallType)
             {
                 case BallType.FireBall:
@@ -49,6 +58,18 @@ namespace Test.Manager
                     break;
             }
             BallPoolManager.DeActivateItem(item);
+        }
+        public void SetProjectileConfigurationForBall(float height, float width)
+        {
+            double[] x_coeff = new double[] { Mathf.Pow(width, 2), Mathf.Pow(width / 2, 2) };
+            double[] y_coeff = new double[] { width, width / 2 };
+            double[] equals = new double[] { 0, height };
+            Simultaneous2Unknown sim2unk;
+            sim2unk = new Simultaneous2Unknown(x_coeff, y_coeff, equals);
+            var result2D = sim2unk.SolveSimultaneous();
+
+            m_PointA = (float)result2D[0];
+            m_PointB = (float)result2D[1];
         }
         #endregion
     }
@@ -75,6 +96,7 @@ public class BallConfig
     public Sprite sprite;
     public PhysicsMaterial2D physicsMaterial2;
     public float damage;
+    public float thrust;
     public float lifeTime;
 }
 public enum BallType
@@ -106,5 +128,6 @@ public class BowConfig
     [Header("Bow Settings")]
     [Tooltip("Set Data Settings For Bow Settings ")]
     public float speed;
-    public float rate;
+    public float curveHeight;
+    public float curveWidth;
 }
